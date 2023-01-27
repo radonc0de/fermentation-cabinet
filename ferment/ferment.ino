@@ -15,7 +15,6 @@ DallasTemperature tempSensors(&oneWireTemp);
 // However, you can connect other I2C sensors to the I2C bus and share
 // the I2C bus.
 Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
-
 // These #defines make it easy to set the backlight color
 #define RED 0x1
 #define YELLOW 0x3
@@ -25,19 +24,23 @@ Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 #define VIOLET 0x5
 #define WHITE 0x7
 
+//VARIABLE DECLARATIONS
+
+//BUTTONS
 int red_btn = 10;
 int yellow_btn = 11;
 int green_btn  = 12;
-//modes =  possible state of frige with its own rules; 0 = idle, 1 = pre-heat, 2 = dump, 3 = refrigerate, 4 = cook
+//MODES =  possible state of frige with its own rules; 0 = idle, 1 = pre-heat, 2 = dump, 3 = refrigerate, 4 = cook
 const char modes[5][12] = {"Idle", "Pre-Heat", "Dump", "Refrigerate", "Cook"};
 int modeQueue[5] = {0, 0, 0, 0, 0}; //currentMode[0] is current state; this is setup as an array so modes can be queued; ex. currentMode[1] will occur after currentMode[0] once a certain condition is met
+//TEMPERATURES
 int numSensors = 4; //how many oneWire temp sensors INSIDE THE FRIDGE
 float temperatures[4]; //array for storing temperatures, use same number as previous
 float cookingTemp = 106.0; 
 float fridgeTemp = 37.0;
 float dumpTemp = 60.0; //target temperature for dump, you might want to put a temp sensors in thermal reservoir to determine this
 float dumpThreshold = 5.0; //how close temperature needs to be to dump temperature to end dump
-
+//TIME 
 const long cookingDuration = 129600; //36 hours in seconds
 long timeRemaining = 0;
 
